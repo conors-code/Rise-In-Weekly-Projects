@@ -6,14 +6,16 @@ fn main() {
     let mut arg1_as_string:String = String::new();
     let mut arg2_as_string:String = String::new();
 
-
+    //get input for the numbers
     println!("Please enter your first number, decimals allowed");
     io::stdin().read_line(&mut arg1_as_string).expect("Failed to read input");
-    let arg1:f64 = arg1_as_string.trim().parse().unwrap();
+    let arg1:f64 = arg1_as_string.trim().parse().expect("This need to be numeric");
+    
     println!("Please enter your second number, decimals allowed");
     io::stdin().read_line(&mut arg2_as_string).expect("Failed to read input");
-    let arg2:f64= arg2_as_string.trim().parse().unwrap();
+    let arg2:f64= arg2_as_string.trim().parse().expect("This need to be numeric");
 
+    //get input for the operation
     println!("Please enter your operation: choose one of:");
     println!("add, subtract, divide or multiply");
     println!("Please enter first number");
@@ -42,8 +44,9 @@ fn main() {
         }
     };
 
+    //Now get the result...
     let input_result = calculate(input_op);
-
+    //...and print the output as requested.
     match input_result {
        Ok(result_num) => println!("{} with {} and {} gives: {}", 
          input_op_string, arg1_as_string, arg2_as_string, result_num),
@@ -59,6 +62,7 @@ enum Operation {
     Divide(f64, f64),
 }
 
+//The calculator itself, with check for 0 division.
 fn calculate(op: Operation) -> Result<f64, String> {
     match op {
         Operation::Divide(arg1, arg2) => { 
