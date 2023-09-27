@@ -14,4 +14,4 @@ Cargo.lock
 *.pdb
 notes/Cargo.toml
 notes/src/main.rs
-Cargo.toml
+/Cargo.toml
